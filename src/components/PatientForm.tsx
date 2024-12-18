@@ -1,19 +1,17 @@
 import {useForm} from 'react-hook-form'
 import Error from './Error'
+import type {DraftPatient} from '../types'
 
 export default function PatientForm() {
-    const {register, handleSubmit, formState: {errors}} = useForm()
-
-    const registerPatient = () => {
-        console.log('Nuevo Paciente')
+    const {register, handleSubmit, formState: {errors}} = useForm<DraftPatient>()
+    const registerPatient = (data: DraftPatient) => {
+        console.log(data)
     }
-
     // console.log(errors)
     
     return (
         <div className="md:w-1/2 lg:w-2/5 mx-5">
             <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
-
             <p className="text-lg mt-5 text-center mb-10">
                 Añade Pacientes y {''}
                 <span className="text-indigo-600 font-bold">Administralos</span>
@@ -42,11 +40,7 @@ export default function PatientForm() {
                         })}
                     />
                     {errors.name && (
-                        <Error>{errors.name.message?.toString()}</Error>
-                    )}
-
-                    {errors.maxLength && (
-                        <Error>{errors.maxLength.message?.toString()}</Error> 
+                        <Error>{errors.name.message}</Error>
                     )}
                 </div>
 
@@ -64,7 +58,7 @@ export default function PatientForm() {
                         })}
                     />
                     {errors.caretaker && (
-                        <Error>{errors.caretaker.message?.toString()}</Error>
+                        <Error>{errors.caretaker.message}</Error>
                     )}
                 </div>
 
@@ -86,7 +80,7 @@ export default function PatientForm() {
                         })} 
                     />
                     {errors.email && (
-                        <Error>{errors.email.message?.toString()}</Error>
+                        <Error>{errors.email.message}</Error>
                     )}
                 </div>
 
@@ -103,7 +97,7 @@ export default function PatientForm() {
                         })}
                     />
                     {errors.date && (
-                        <Error>{errors.date.message?.toString()}</Error>
+                        <Error>{errors.date.message}</Error>
                     )}
                 </div>
                 
@@ -120,7 +114,7 @@ export default function PatientForm() {
                         })}
                     ></textarea>
                     {errors.symptoms && (
-                        <Error>{errors.symptoms.message?.toString()}</Error>
+                        <Error>{errors.symptoms.message}</Error>
                     )}
                 </div>
 
